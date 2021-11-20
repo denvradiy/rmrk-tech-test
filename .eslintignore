@@ -1,0 +1,8 @@
+./build/
+./build-temp/
+./build-old/
+./node_modules/
+./src/components/deprecated/
+./src/images/
+
+*.js, *.jsx

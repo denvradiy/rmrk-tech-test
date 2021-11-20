@@ -1,0 +1,10 @@
+import { memo } from 'react'
+import { Box } from '@chakra-ui/react'
+
+import { <%ComponentName%>Props } from '.'
+
+function <%ComponentName%>({ ...rest }: <%ComponentName%>Props): JSX.Element {
+	return <Box {...rest}><%ComponentName%></Box>
+}
+
+export default memo(<%ComponentName%>)

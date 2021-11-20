@@ -1,0 +1,93 @@
+{
+	"plugins": [
+		"react",
+		"react-hooks",
+		"@typescript-eslint",
+		"prettier"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier",
+		"prettier/react",
+		"react-app",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript"
+	],
+	"rules": {
+		"import/order": [
+			1, {
+				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+				"newlines-between": "always"
+			}
+		],
+		"react/prop-types": 0,
+		"react/display-name": 0,
+		"@typescript-eslint/explicit-module-boundary-types": 0,
+		"@typescript-eslint/ban-types": 0,
+		"@typescript-eslint/no-explicit-any": 0,
+		"@typescript-eslint/ban-ts-comment": 0,
+		"no-restricted-imports": [
+			1,
+			{
+				"patterns": [
+					"../../*",
+					"@material-ui/*/*/*",
+					"!@material-ui/core/test-utils/*",
+					"!@material-ui/core/styles/*"
+				]
+			}
+		],
+		"no-console": [
+			0,
+			{
+				"allow": [
+					"warn",
+					"error"
+				]
+			}
+		],
+		"react-hooks/exhaustive-deps": [1],
+		// Disable props spreading (<App {...props} />) warning.
+		"react/jsx-props-no-spreading": 0,
+		// Throw warning instead of error when using array index as a key.
+		"react/no-array-index-key": 0,
+		// Make prettier code formatting suggestions more verbose.
+		"prettier/prettier": [
+			"warn",
+			{
+				"semi": false,
+				"singleQuote": true,
+				"jsxSingleQuote": true,
+				"bracketSpacing": true,
+				"jsxBracketSameLine": false,
+				"arrowParens": "avoid",
+				"useTabs": true,
+				"tabWidth": 2,
+				"printWidth": 100,
+				"trailingComma": "all"
+			}
+		],
+		// Throw warning when <a href="#"> or <a href="javascript:void(0)"> are used. Use <button> instead.
+		// Allow using (props) => <Component /> and ({propName}) => <Component /> syntax.
+		"react/destructuring-assignment": "off",
+
+		// we are using React 17 so we can disable this rules
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off",
+
+		"@typescript-eslint/no-var-requires": 0
+	},
+	"settings": {
+		"import/external-module-folders": ["node_modules"],
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		}
+	}
+}
