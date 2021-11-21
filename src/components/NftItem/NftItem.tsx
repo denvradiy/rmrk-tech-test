@@ -5,7 +5,7 @@ import Image from '../Image'
 
 import { NftItemProps } from '.'
 
-function NftItem({ ...rest }: NftItemProps): JSX.Element {
+function NftItem({ name }: NftItemProps): JSX.Element {
 	return (
 		<Box
 			borderWidth='1px'
@@ -19,7 +19,7 @@ function NftItem({ ...rest }: NftItemProps): JSX.Element {
 			<Image src={'/images/common/nft-placeholder.jpeg'} width={180} height={180} />
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-					Item Name
+					{name}
 				</Box>
 				<Box>Item code</Box>
 			</Box>
