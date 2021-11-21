@@ -16,19 +16,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		const nftsData = nftsRes.data
 
-		nftsData.map(async item => {
-			const cid = item.metadata.split('ipfs://ipfs/')[1]
-			const metadataRes = await axios.get(`https://rmrk.mypinata.cloud/ipfs/${cid}`)
-			const metadata = metadataRes.data
-			item.imageProps = metadata
-		})
+		const nftsDataWithImages = await Promise.all(
+			nftsData.map(async item => {
+				const cid = item.metadata.split('ipfs://ipfs/')[1]
+				const metadataRes = await axios.get(`https://rmrk.mypinata.cloud/ipfs/${cid}`)
+				item.imageProps = metadataRes.data
+				return item
+			}),
+		)
 
 		const startQ = start ? +start : 0
-		const limitQ = limit ? +limit + startQ : nftsData.length
+		const limitQ = limit ? +limit + startQ : nftsDataWithImages.length
 
-		const filteredNfts = nftsData.slice(startQ, limitQ)
+		const filteredNfts = nftsDataWithImages.slice(startQ, limitQ)
 
-		const readyNfts = limit || start ? filteredNfts : nftsData
+		const readyNfts = limit || start ? filteredNfts : nftsDataWithImages
 
 		res.status(200).json(readyNfts)
 	} catch (e) {
