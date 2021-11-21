@@ -16,6 +16,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		const nftsData = nftsRes.data
 
+		nftsData.map(async item => {
+			const cid = item.metadata.split('ipfs://ipfs/')[1]
+			const metadataRes = await axios.get(`https://rmrk.mypinata.cloud/ipfs/${cid}`)
+			const metadata = metadataRes.data
+			item.imageProps = metadata
+		})
+
 		const startQ = start ? +start : 0
 		const limitQ = limit ? +limit + startQ : nftsData.length
 

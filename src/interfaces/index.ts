@@ -10,4 +10,12 @@ export interface INft {
 	sn: string
 	transferable: number
 	__typename: string
+	imageProps?: IImageProps
+}
+
+export interface IImageProps {
+	description: string
+	name: string
+	attributes: []
+	image: string
 }
