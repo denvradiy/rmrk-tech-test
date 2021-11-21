@@ -2,25 +2,31 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 
 import { API_URL } from 'consts'
+import { INft } from 'interfaces'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const {
 		query: { start, limit },
 	} = req
 
-	const nfsRes = await axios.get(
-		`${API_URL}/api/rmrk1/account/CdA62JpyfEyEASA5XKYJAyYZmdQPqe5X9x8MLnoTWtc9rNn`,
-	)
-	const nftsData = await nfsRes.data
+	try {
+		const nftsRes = await axios.get<INft[]>(
+			`${API_URL}/api/rmrk1/account/CdA62JpyfEyEASA5XKYJAyYZmdQPqe5X9x8MLnoTWtc9rNn`,
+		)
 
-	const startQ = start ? +start : 0
-	const limitQ = limit ? +limit + startQ : nftsData.length
+		const nftsData = nftsRes.data
 
-	const filteredNfts = nftsData.slice(startQ, limitQ)
+		const startQ = start ? +start : 0
+		const limitQ = limit ? +limit + startQ : nftsData.length
 
-	const readyNfts = limit || start ? filteredNfts : nftsData
+		const filteredNfts = nftsData.slice(startQ, limitQ)
 
-	res.status(200).json(readyNfts)
+		const readyNfts = limit || start ? filteredNfts : nftsData
+
+		res.status(200).json(readyNfts)
+	} catch (e) {
+		res.status(e.statusCode).json({ success: false })
+	}
 }
 
 export default handler

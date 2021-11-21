@@ -20,5 +20,6 @@
 		"target": "esnext"
 	},
 	"exclude": ["node_modules"],
-	"include": ["src/types/**/*.d.ts", "next-env.d.ts", "src", "node_modules/eslint-plugin-react/lib/types.d.ts"]
+	"include": [
+    "src/interfaces/**/*.d.ts", "next-env.d.ts", "src", "node_modules/eslint-plugin-react/lib/types.d.ts"]
 }

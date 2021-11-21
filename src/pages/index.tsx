@@ -6,8 +6,9 @@ import axios from 'axios'
 import ContentContainer from 'components/ContentContainer'
 import NftItem from 'components/NftItem'
 import { BASE_URL } from 'consts'
+import { INft } from 'interfaces'
 
-export default function Home({ nfts, page }) {
+export default function Home({ nfts, page }: { nfts: INft[]; page: number }) {
 	useEffect(() => {
 		console.log(nfts)
 	}, [])
@@ -25,7 +26,7 @@ export default function Home({ nfts, page }) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params, query: { page = 1 } }) => {
 	const start = +page === 1 ? 0 : (+page - 1) * 2
-	const nftsRes = await axios(`${BASE_URL}/api/nfts?limit=${2}&start=${start}`)
+	const nftsRes = await axios.get<INft[]>(`${BASE_URL}/api/nfts?limit=${2}&start=${start}`)
 	const nfts = await nftsRes.data
 
 	return {

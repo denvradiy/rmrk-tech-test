@@ -1,9 +1,11 @@
 import { memo } from 'react'
 import { Box } from '@chakra-ui/react'
 
+import { INft } from 'interfaces'
+
 import Image from '../Image'
 
-import { NftItemProps } from '.'
+type NftItemProps = Pick<INft, 'name'>
 
 function NftItem({ name }: NftItemProps): JSX.Element {
 	return (
