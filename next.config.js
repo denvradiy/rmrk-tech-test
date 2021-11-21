@@ -66,5 +66,6 @@ module.exports = {
 	distDir: process.env.DIST_DIR || 'build',
 	images: {
 		deviceSizes: [425, 768, 1199, 1440],
+		domains: ['ipfs.io'],
 	},
 }

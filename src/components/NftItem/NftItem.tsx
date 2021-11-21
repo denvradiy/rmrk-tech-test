@@ -2,12 +2,13 @@ import { memo } from 'react'
 import { Box } from '@chakra-ui/react'
 
 import { INft } from 'interfaces'
+import useNftImage from 'hooks/useNftImage'
 
 import Image from '../Image'
 
-type NftItemProps = Pick<INft, 'name'>
+function NftItem({ item }: { item: INft }): JSX.Element {
+	const imgUrl = useNftImage(item)
 
-function NftItem({ name }: NftItemProps): JSX.Element {
 	return (
 		<Box
 			borderWidth='1px'
@@ -18,10 +19,10 @@ function NftItem({ name }: NftItemProps): JSX.Element {
 			}}
 			transitionDuration={'0.25s'}
 		>
-			<Image src={'/images/common/nft-placeholder.jpeg'} width={180} height={180} />
+			<Image src={imgUrl || '/images/common/nft-placeholder.jpeg'} width={180} height={180} />
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-					{name}
+					{item.name}
 				</Box>
 				<Box>Item code</Box>
 			</Box>
