@@ -1,12 +1,10 @@
 import { FunctionComponent, memo } from 'react'
-import { Box, Select, SelectProps } from '@chakra-ui/react'
+import { Select, SelectProps } from '@chakra-ui/react'
 
-const SelectCustom: FunctionComponent<SelectProps> = ({ options: SelectOptions }) => {
+const SelectCustom: FunctionComponent<SelectProps> = ({ children, onChange, placeholder }) => {
 	return (
-		<Select>
-			{options.map(i => (
-				<option value=''></option>
-			))}
+		<Select placeholder={placeholder} onChange={onChange}>
+			{children}
 		</Select>
 	)
 }

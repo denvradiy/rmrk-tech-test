@@ -1,10 +1,11 @@
-import { memo, useMemo, useEffect } from 'react'
+import {memo, useMemo, useEffect, useCallback, ChangeEventHandler} from 'react'
 import { useRouter } from 'next/router'
-import { SimpleGrid, Box, Select, Text } from '@chakra-ui/react'
+import { SimpleGrid, Box, Text } from '@chakra-ui/react'
 
 import NftItem from 'components/NftItem/NftItem'
 import ContentContainer from 'components/ContentContainer/ContentContainer'
 import Pagination from 'components/Pagination'
+import SelectCustom from 'components/SelectCustom'
 
 import { PaginationWrapper } from './Nfts.styles'
 
@@ -20,16 +21,19 @@ function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
 		}
 	}, [lastPage, page, router])
 
+	const handleSorting = useCallback((event: ChangeEvent<HTMLSelectElement>) => console.log(e), [])
+
 	return (
 		<ContentContainer py={10}>
 			<Text fontSize={'xl'} mb={2}>
 				Sort by serial number
 			</Text>
+			<SelectCustom />
 			<Box mb={10}>
-				<Select placeholder='Select option'>
-					<option value='option1'>desc</option>
-					<option value='option2'>ask</option>
-				</Select>
+				<SelectCustom placeholder={'Select value'} onChange={handleSorting}>
+					<option value='desc'>Desc</option>
+					<option value='ask'>Ask</option>
+				</SelectCustom>
 			</Box>
 			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} mb={10}>
 				{nfts.map(item => (
