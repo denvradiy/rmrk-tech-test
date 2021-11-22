@@ -1,4 +1,4 @@
-import {memo, useMemo, useEffect, useCallback, ChangeEventHandler} from 'react'
+import { memo, useMemo, useEffect, useCallback, ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { SimpleGrid, Box, Text } from '@chakra-ui/react'
 
@@ -12,6 +12,7 @@ import { PaginationWrapper } from './Nfts.styles'
 import { NftsProps } from './index'
 
 function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
+	const [nftsArr, setNftsArr] = useState(nfts)
 	const router = useRouter()
 	const lastPage = useMemo(() => Math.ceil(numberOfNfts / 20), [numberOfNfts])
 
@@ -21,25 +22,38 @@ function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
 		}
 	}, [lastPage, page, router])
 
-	const handleSorting = useCallback((event: ChangeEvent<HTMLSelectElement>) => console.log(e), [])
+	const handleSorting = useCallback(
+		(event: ChangeEvent<HTMLSelectElement>) => {
+			if (event.target.value === 'ask') {
+				setNftsArr(nfts.sort((a, b) => parseFloat(a.sn) - parseFloat(b.sn)))
+			}
+
+			if (event.target.value === 'desc') {
+				setNftsArr(nfts.sort((a, b) => parseFloat(b.sn) - parseFloat(a.sn)))
+			}
+		},
+		[nfts],
+	)
 
 	return (
 		<ContentContainer py={10}>
 			<Text fontSize={'xl'} mb={2}>
 				Sort by serial number
 			</Text>
-			<SelectCustom />
-			<Box mb={10}>
+
+			<Box mb={10} maxW={300}>
 				<SelectCustom placeholder={'Select value'} onChange={handleSorting}>
 					<option value='desc'>Desc</option>
-					<option value='ask'>Ask</option>
+					<option value='ask'>Asc</option>
 				</SelectCustom>
 			</Box>
+
 			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} mb={10}>
-				{nfts.map(item => (
+				{nftsArr.map(item => (
 					<NftItem key={item.id} item={item} />
 				))}
 			</SimpleGrid>
+
 			<PaginationWrapper>
 				<Pagination pageCount={lastPage} initialPage={page - 1} lastPage={lastPage} />
 			</PaginationWrapper>
