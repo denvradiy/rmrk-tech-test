@@ -20,11 +20,17 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			transitionDuration={'0.25s'}
 		>
 			{imgUrl && (
-				<Image src={imgUrl || '/images/common/nft-placeholder.jpeg'} width={180} height={180} />
+				<Image
+					src={imgUrl || '/images/common/nft-placeholder.jpeg'}
+					width={180}
+					height={180}
+					objectFit={'cover'}
+				/>
 			)}
 			{videoUrl && (
-				<video autoPlay loop style={{ width: '500px', height: '500px' }}>
-					<source src={videoUrl} />
+				<video autoPlay loop muted playsInline>
+					<source src={videoUrl} type={'video/mp4'} />
+					Your browser does not support the video tag.
 				</video>
 			)}
 			<Box p='6'>

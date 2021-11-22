@@ -6,7 +6,7 @@ import { INft } from 'interfaces'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const {
-		query: { start, limit },
+		query: { start, limit, id },
 	} = req
 
 	try {
@@ -19,9 +19,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		const startQ = start ? +start : 0
 		const limitQ = limit ? +limit + startQ : nftsData.length
 
-		const filteredNfts = nftsData.slice(startQ, limitQ)
+		const slicedNfts = nftsData.slice(startQ, limitQ)
 
-		const readyNfts = limit || start ? filteredNfts : nftsData
+		const filteredByIdNfts = nftsData.filter(nft => nft.id === id)
+
+		const readyNfts = id ? filteredByIdNfts : limit || start ? slicedNfts : nftsData
 
 		res.status(200).json(readyNfts)
 	} catch (e) {
