@@ -31,30 +31,25 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 				transform: 'scale(1.05)',
 			}}
 			transitionDuration={'0.25s'}
+			position={'relative'}
 		>
-			{!videoUrl && (
-				<Box position={'relative'} height={'100%'} width={'100%'} paddingBottom={'100%'}>
-					<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
-						<Spinner />
-					</Box>
-				</Box>
+			{!imgUrl && !videoUrl && (
+				<Box position={'relative'} h={'100%'} w={'100%'} paddingBottom={'100%'} />
 			)}
 
 			{imageLoading && (
-				<Box position={'relative'} height={'100%'} width={'100%'} paddingBottom={'100%'}>
-					<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
-						<Spinner />
-					</Box>
+				<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
+					<Spinner />
 				</Box>
 			)}
 
-			{imgUrl && !imageLoading && (
+			{imgUrl && (
 				<Image
 					src={imgUrl}
 					width={180}
 					height={180}
 					objectFit={'cover'}
-					onLoad={loadedImageHandler}
+					onLoadingComplete={loadedImageHandler}
 				/>
 			)}
 

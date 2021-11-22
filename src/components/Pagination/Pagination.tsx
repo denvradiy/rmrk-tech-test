@@ -28,6 +28,13 @@ function Pagination({ pageCount, initialPage, lastPage, ...rest }: PaginationPro
 				pageCount={pageCount}
 				initialPage={initialPage}
 				disableInitialCallback
+				breakClassName='pagination__break'
+				containerClassName='pagination'
+				pageClassName='pagination__page'
+				pageLinkClassName='pagination__link'
+				activeClassName='pagination__page--active'
+				previousLinkClassName='pagination__button pagination__button--prev'
+				nextLinkClassName='pagination__button pagination__button--next'
 				previousLabel={<Button>Previous</Button>}
 				nextLabel={<Button>Next</Button>}
 			/>

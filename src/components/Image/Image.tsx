@@ -19,6 +19,7 @@ export default function Image({
 	blurredSrc,
 	unoptimized,
 	onLoad,
+	onLoadingComplete,
 	objectFit = 'contain',
 	layout = 'responsive',
 	// wrapper props
@@ -43,7 +44,7 @@ export default function Image({
 				height={height}
 				alt={alt}
 				placeholder={placeholder}
-				onLoad={onLoad}
+				onLoadingComplete={onLoadingComplete}
 			/>
 		</Box>
 	)

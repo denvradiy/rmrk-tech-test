@@ -6,6 +6,8 @@ import NftItem from 'components/NftItem/NftItem'
 import ContentContainer from 'components/ContentContainer/ContentContainer'
 import Pagination from 'components/Pagination'
 
+import { PaginationWrapper } from './Nfts.styles'
+
 import { NftsProps } from './index'
 
 function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
@@ -19,15 +21,15 @@ function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
 	}, [lastPage, page, router])
 
 	return (
-		<ContentContainer>
-			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} py={10}>
+		<ContentContainer py={10}>
+			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} pb={10}>
 				{nfts.map(item => (
 					<NftItem key={item.id} item={item} />
 				))}
 			</SimpleGrid>
-			<Box>
+			<PaginationWrapper>
 				<Pagination pageCount={lastPage} initialPage={page - 1} lastPage={lastPage} />
-			</Box>
+			</PaginationWrapper>
 		</ContentContainer>
 	)
 }
