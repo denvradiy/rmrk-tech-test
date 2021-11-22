@@ -17,5 +17,6 @@ export interface IImageProps {
 	description: string
 	name: string
 	attributes: []
-	image: string
+	image?: string
+	animation_url?: string
 }

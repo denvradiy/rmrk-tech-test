@@ -7,7 +7,7 @@ import useNftImage from 'hooks/useNftImage'
 import Image from '../Image'
 
 function NftItem({ item }: { item: INft }): JSX.Element {
-	const imgUrl = useNftImage(item)
+	const [imgUrl, videoUrl] = useNftImage(item)
 
 	return (
 		<Box
@@ -19,7 +19,14 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			}}
 			transitionDuration={'0.25s'}
 		>
-			<Image src={imgUrl || '/images/common/nft-placeholder.jpeg'} width={180} height={180} />
+			{imgUrl && (
+				<Image src={imgUrl || '/images/common/nft-placeholder.jpeg'} width={180} height={180} />
+			)}
+			{videoUrl && (
+				<video autoPlay loop style={{ width: '500px', height: '500px' }}>
+					<source src={videoUrl} />
+				</video>
+			)}
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
 					{item.name}
