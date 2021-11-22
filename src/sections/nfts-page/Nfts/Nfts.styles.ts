@@ -29,6 +29,7 @@ export const PaginationWrapper = styled.div`
 			cursor: pointer;
 
 			&--active {
+				font-weight: 900;
 			}
 		}
 	}

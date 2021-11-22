@@ -7,7 +7,7 @@ export default function Link({ children, locale, href, target, ...rest }: LinkPr
 	const newTab = target === '_blank'
 
 	return (
-		<NextLink locale={locale} href={href} {...rest}>
+		<NextLink locale={locale} href={href} {...rest} passHref>
 			<ChakraLink target={target} rel={newTab ? 'noopener noreferrer' : undefined}>
 				{children}
 			</ChakraLink>

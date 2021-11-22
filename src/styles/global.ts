@@ -4,6 +4,9 @@ export const global = {
 			body: {
 				paddingTop: '80px',
 			},
+			a: {
+				outline: 'none !important',
+			},
 		},
 	},
 	config: {
