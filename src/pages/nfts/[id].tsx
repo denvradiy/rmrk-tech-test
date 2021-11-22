@@ -9,11 +9,14 @@ import useNftImage from 'hooks/useNftImage'
 import Image from 'components/Image'
 
 export default function Nft({ nft }: { nft: INft }) {
-	const [imgUrl, videoUrl] = useNftImage(nft)
+	const {
+		data: [imgUrl, videoUrl],
+		itemRef,
+	} = useNftImage(nft)
 
 	return (
 		<ContentContainer>
-			<Flex justify={'center'} direction={'column'} py={10}>
+			<Flex justify={'center'} direction={'column'} py={10} ref={itemRef}>
 				<Box maxW={400} w={'100%'}>
 					{imgUrl && (
 						<Image

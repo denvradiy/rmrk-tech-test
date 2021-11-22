@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Box, Spinner } from '@chakra-ui/react'
 
 import Image from 'components/Image'
@@ -7,10 +7,15 @@ import { INft } from 'interfaces'
 import useNftImage from 'hooks/useNftImage'
 
 function NftItem({ item }: { item: INft }): JSX.Element {
+	const [imageLoading, setImageLoading] = useState(true)
 	const {
 		data: [imgUrl, videoUrl],
 		itemRef,
 	} = useNftImage(item)
+
+	const loadedImageHandler = () => {
+		setImageLoading(false)
+	}
 
 	return (
 		<Box
@@ -27,7 +32,7 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			}}
 			transitionDuration={'0.25s'}
 		>
-			{!imgUrl && !videoUrl && (
+			{!videoUrl && (
 				<Box position={'relative'} height={'100%'} width={'100%'} paddingBottom={'100%'}>
 					<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
 						<Spinner />
@@ -35,7 +40,23 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 				</Box>
 			)}
 
-			{imgUrl && <Image src={imgUrl} width={180} height={180} objectFit={'cover'} />}
+			{imageLoading && (
+				<Box position={'relative'} height={'100%'} width={'100%'} paddingBottom={'100%'}>
+					<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
+						<Spinner />
+					</Box>
+				</Box>
+			)}
+
+			{imgUrl && !imageLoading && (
+				<Image
+					src={imgUrl}
+					width={180}
+					height={180}
+					objectFit={'cover'}
+					onLoad={loadedImageHandler}
+				/>
+			)}
 
 			{videoUrl && !imgUrl && (
 				<Box position='relative' w='100%' h='100%'>
