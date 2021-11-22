@@ -12,6 +12,7 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 		itemRef,
 	} = useNftImage(item)
 
+
 	return (
 		<Box
 			ref={itemRef}
