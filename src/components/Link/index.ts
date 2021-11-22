@@ -3,6 +3,7 @@ import { LinkProps as NextLinkProps } from 'next/link'
 
 export type LinkProps = {
 	target?: string
+	linkOverlay?: boolean
 	children: ReactNode
 } & NextLinkProps
 
