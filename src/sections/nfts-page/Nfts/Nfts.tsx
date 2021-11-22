@@ -1,6 +1,6 @@
 import { memo, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, Box, Select, Text } from '@chakra-ui/react'
 
 import NftItem from 'components/NftItem/NftItem'
 import ContentContainer from 'components/ContentContainer/ContentContainer'
@@ -22,7 +22,16 @@ function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
 
 	return (
 		<ContentContainer py={10}>
-			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} pb={10}>
+			<Text fontSize={'xl'} mb={2}>
+				Sort by serial number
+			</Text>
+			<Box mb={10}>
+				<Select placeholder='Select option'>
+					<option value='option1'>desc</option>
+					<option value='option2'>ask</option>
+				</Select>
+			</Box>
+			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} mb={10}>
 				{nfts.map(item => (
 					<NftItem key={item.id} item={item} />
 				))}

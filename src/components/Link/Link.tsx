@@ -8,7 +8,11 @@ export default function Link({ children, locale, href, target, ...rest }: LinkPr
 
 	return (
 		<NextLink locale={locale} href={href} {...rest} passHref>
-			<ChakraLink target={target} rel={newTab ? 'noopener noreferrer' : undefined}>
+			<ChakraLink
+				target={target}
+				rel={newTab ? 'noopener noreferrer' : undefined}
+				_focus={{ boxShadow: 'none' }}
+			>
 				{children}
 			</ChakraLink>
 		</NextLink>

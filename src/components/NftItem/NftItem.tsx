@@ -64,10 +64,10 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 				)}
 
 				<Box p='6'>
-					<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
+					<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight'>
 						{item.name}
 					</Box>
-					<Box>Item code</Box>
+					<Box>{item.sn}</Box>
 				</Box>
 			</Box>
 		</Link>
