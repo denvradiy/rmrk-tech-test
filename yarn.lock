@@ -8716,6 +8716,11 @@ react-focus-lock@2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
+react-hook-inview@^4.3.11:
+  version "4.3.11"
+  resolved "https://registry.yarnpkg.com/react-hook-inview/-/react-hook-inview-4.3.11.tgz#f5c9979422db5ef4b7295a11ca480da7ca07ed78"
+  integrity sha512-z3PyANU37v6rMVRXrA0IybKdGQCxlM+UVxPeyjCIaAHJKctSxcz0HvurR/j/FxDz85Kp32wsQp4SIAKrfiRNfQ==
+
 react-input-autosize@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-3.0.0.tgz#6b5898c790d4478d69420b55441fcc31d5c50a85"

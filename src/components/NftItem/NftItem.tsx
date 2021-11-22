@@ -1,23 +1,24 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 
+import Image from 'components/Image'
+import Link from 'components/Link'
 import { INft } from 'interfaces'
 import useNftImage from 'hooks/useNftImage'
 
-import Image from '../Image'
-import Link from '../Link'
-
 function NftItem({ item }: { item: INft }): JSX.Element {
-	const [imgUrl, videoUrl] = useNftImage(item)
+	const [imgUrl, videoUrl, itemRef] = useNftImage(item)
 
 	return (
 		<Box
+			ref={itemRef}
 			borderWidth='1px'
 			borderRadius='lg'
 			overflow='hidden'
 			display='flex'
 			flexDirection='column'
 			justifyContent='space-between'
+			minHeight={200}
 			_hover={{
 				transform: 'scale(1.05)',
 			}}

@@ -22,7 +22,7 @@ function Pagination({ pageCount, initialPage, lastPage, ...rest }: PaginationPro
 	return (
 		<Box {...rest}>
 			<ReactPaginate
-				pageRangeDisplayed={4}
+				pageRangeDisplayed={2}
 				marginPagesDisplayed={1}
 				onPageChange={paginationHandler}
 				pageCount={pageCount}

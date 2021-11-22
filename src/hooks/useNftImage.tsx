@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useInViewEffect } from 'react-hook-inview'
 
 import { IImageProps, INft } from '../interfaces'
 
-export default function useNftImage(item: INft): string[] {
+export default function useNftImage(item: INft): (string | ((node: Element | null) => void))[] {
 	const [imgUrl, setImgUrl] = useState('')
 	const [videoUrl, setVideoUrl] = useState('')
 
@@ -22,9 +23,15 @@ export default function useNftImage(item: INft): string[] {
 		}
 	}
 
-	useEffect(() => {
-		getImagePath()
-	}, [])
+	const itemRef = useInViewEffect(
+		([entry], observer) => {
+			if (entry.isIntersecting) {
+				observer.unobserve(entry.target)
+				getImagePath()
+			}
+		},
+		{ threshold: 0.5 },
+	)
 
-	return [imgUrl, videoUrl]
+	return [imgUrl, videoUrl, itemRef]
 }
