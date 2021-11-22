@@ -26,7 +26,7 @@ export default function Nft({ nft }: { nft: INft }) {
 							objectFit={'cover'}
 						/>
 					)}
-					{videoUrl && (
+					{videoUrl && !imgUrl && (
 						<video autoPlay loop muted playsInline>
 							<source src={videoUrl} type={'video/mp4'} />
 							Your browser does not support the video tag.
