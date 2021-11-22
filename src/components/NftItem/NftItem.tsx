@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 
 import Image from 'components/Image'
 import Link from 'components/Link'
@@ -11,7 +11,6 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 		data: [imgUrl, videoUrl],
 		itemRef,
 	} = useNftImage(item)
-
 
 	return (
 		<Box
@@ -28,18 +27,17 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			}}
 			transitionDuration={'0.25s'}
 		>
-			{(!imgUrl || !videoUrl) && (
-				<Image
-					src={'/images/common/nft-placeholder.jpeg'}
-					width={180}
-					height={180}
-					objectFit={'cover'}
-				/>
+			{!imgUrl && !videoUrl && (
+				<Box position={'relative'} height={'100%'} width={'100%'} paddingBottom={'100%'}>
+					<Box position={'absolute'} top={'50%'} left={'50%'} transform={'translate(-50%, -50%)'}>
+						<Spinner />
+					</Box>
+				</Box>
 			)}
 
 			{imgUrl && <Image src={imgUrl} width={180} height={180} objectFit={'cover'} />}
 
-			{videoUrl && (
+			{videoUrl && !imgUrl && (
 				<Box position='relative' w='100%' h='100%'>
 					<video autoPlay loop muted playsInline style={{ objectFit: 'cover', height: '100%' }}>
 						<source src={videoUrl} type={'video/mp4'} />
@@ -47,6 +45,7 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 					</video>
 				</Box>
 			)}
+
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
 					<Link href={`/nfts/${item.id}`}>{item.name}</Link>

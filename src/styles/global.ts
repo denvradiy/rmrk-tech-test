@@ -7,7 +7,6 @@ export const global = {
 		},
 	},
 	config: {
-		useSystemColorMode: true,
 		initialColorMode: 'dark',
 	},
 }
