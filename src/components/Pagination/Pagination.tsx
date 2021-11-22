@@ -8,7 +8,11 @@ import { PaginationProps } from '.'
 function Pagination({ pageCount, initialPage, lastPage, ...rest }: PaginationProps): JSX.Element {
 	const router = useRouter()
 
-	const paginationHandler = (url: any) => {
+	type Url = {
+		selected: number
+	}
+
+	const paginationHandler = (url: Url) => {
 		const currentPath = router.pathname
 		const currentQuery = { ...router.query }
 		currentQuery.page = url.selected + 1

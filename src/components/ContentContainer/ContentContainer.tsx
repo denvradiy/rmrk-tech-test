@@ -1,7 +1,7 @@
-import { memo, FunctionComponent } from 'react'
+import { memo } from 'react'
 import { Container, ContainerProps } from '@chakra-ui/react'
 
-const ContentContainer: FunctionComponent<ContainerProps> = ({ children, ...rest }) => {
+function ContentContainer({ children, ...rest }: ContainerProps) {
 	return (
 		<Container maxW={'container.xl'} {...rest}>
 			{children}

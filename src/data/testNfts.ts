@@ -1,4 +1,4 @@
-export const nfts = [
+export const testNfts = [
 	{
 		order: 0,
 		id: '9543529-8adee5c0c132c32e6a-QUAKZ-QUAKZ_66-0000000000000067',

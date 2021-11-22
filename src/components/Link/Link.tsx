@@ -1,9 +1,9 @@
+import { memo } from 'react'
 import NextLink from 'next/link'
 import { Link as ChakraLink } from '@chakra-ui/react'
 
 import { LinkProps } from './index'
-
-export default function Link({ children, locale, href, target, ...rest }: LinkProps): JSX.Element {
+function Link({ children, locale, href, target, ...rest }: LinkProps): JSX.Element {
 	const newTab = target === '_blank'
 
 	return (
@@ -18,3 +18,4 @@ export default function Link({ children, locale, href, target, ...rest }: LinkPr
 		</NextLink>
 	)
 }
+export default memo(Link)

@@ -1,6 +1,6 @@
 import { memo, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { SimpleGrid} from '@chakra-ui/react'
+import { SimpleGrid } from '@chakra-ui/react'
 
 import NftItem from 'components/NftItem/NftItem'
 import ContentContainer from 'components/ContentContainer/ContentContainer'
@@ -10,7 +10,7 @@ import { PaginationWrapper } from './Nfts.styles'
 
 import { NftsProps } from './index'
 
-function Nfts({ nfts, numberOfNfts, page, ...rest }: NftsProps): JSX.Element {
+function Nfts({ nfts, numberOfNfts, page }: NftsProps): JSX.Element {
 	const router = useRouter()
 	const lastPage = useMemo(() => Math.ceil(numberOfNfts / 20), [numberOfNfts])
 

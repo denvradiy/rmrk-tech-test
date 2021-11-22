@@ -1,9 +1,10 @@
 import ImageNext from 'next/image'
+import { memo } from 'react'
 import { Box } from '@chakra-ui/react'
 
 import { ImageProps } from './index'
 
-export default function Image({
+function Image({
 	preload,
 	src,
 	loader,
@@ -49,3 +50,5 @@ export default function Image({
 		</Box>
 	)
 }
+
+export default memo(Image)

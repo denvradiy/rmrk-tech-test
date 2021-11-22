@@ -10,6 +10,10 @@ npm run dev
 yarn dev
 ```
 
+```bash
+Requirements : node version >= 12
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
@@ -20,11 +24,9 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## ENV
 
-`.env`, `.env.development`, and `.env.production` files should be included in your repository as they define defaults.
+`.env.development`, and `.env.production` for dev and prod with appropriate variables.
 
-`.env*.local` should be added to `.gitignore`, as those files are intended to be ignored. 
-
-`.env.local` is where secrets can be stored.
+`.env.local` - create file with variables and run in dev:local mode
 
 ## Learn More
 

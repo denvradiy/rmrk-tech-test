@@ -1,8 +1,10 @@
+export const bodyPaddingTop = 80
+
 export const global = {
 	styles: {
 		global: {
 			body: {
-				paddingTop: '80px',
+				paddingTop: `${bodyPaddingTop}px`,
 			},
 			a: {
 				outline: 'none !important',
