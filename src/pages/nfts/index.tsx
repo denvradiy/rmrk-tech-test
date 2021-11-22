@@ -10,7 +10,7 @@ import { INft } from 'interfaces'
 export default function Hfts({ nfts, page }: { nfts: INft[]; page: number }) {
 	return (
 		<ContentContainer>
-			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6}>
+			<SimpleGrid columns={[1, 2, 3, 4]} spacing={6} py={10}>
 				{nfts.map(item => (
 					<NftItem key={item.id} item={item} />
 				))}

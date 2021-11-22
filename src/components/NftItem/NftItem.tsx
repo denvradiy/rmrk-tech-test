@@ -5,6 +5,7 @@ import { INft } from 'interfaces'
 import useNftImage from 'hooks/useNftImage'
 
 import Image from '../Image'
+import Link from '../Link'
 
 function NftItem({ item }: { item: INft }): JSX.Element {
 	const [imgUrl, videoUrl] = useNftImage(item)
@@ -35,7 +36,7 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			)}
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
-					{item.name}
+					<Link href={`/nfts/${item.id}`}>{item.name}</Link>
 				</Box>
 				<Box>Item code</Box>
 			</Box>
