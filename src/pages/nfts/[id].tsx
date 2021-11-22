@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import axios from 'axios'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 
 import { INft } from 'interfaces'
 import { BASE_URL } from 'consts'
@@ -13,13 +13,13 @@ export default function Nft({ nft }: { nft: INft }) {
 
 	return (
 		<ContentContainer>
-			<Flex justify={'center'} py={10}>
-				<Box maxW={400}>
+			<Flex justify={'center'} direction={'column'} py={10}>
+				<Box maxW={400} w={'100%'}>
 					{imgUrl && (
 						<Image
 							src={imgUrl || '/images/common/nft-placeholder.jpeg'}
-							width={180}
-							height={180}
+							width={400}
+							height={400}
 							objectFit={'cover'}
 						/>
 					)}
@@ -30,7 +30,9 @@ export default function Nft({ nft }: { nft: INft }) {
 						</video>
 					)}
 				</Box>
-				<Box>{nft.name}</Box>
+				<Heading as='h1' size='2xl' my={2}>
+					{nft.name}
+				</Heading>
 			</Flex>
 		</ContentContainer>
 	)

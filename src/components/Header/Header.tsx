@@ -19,6 +19,7 @@ function Header({ ...rest }: HeaderProps): JSX.Element {
 			py={2}
 			w={'100%'}
 			background={bg}
+			zIndex={999}
 			{...rest}
 		>
 			<ContentContainer>

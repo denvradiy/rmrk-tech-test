@@ -15,6 +15,9 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			borderWidth='1px'
 			borderRadius='lg'
 			overflow='hidden'
+			display='flex'
+			flexDirection='column'
+			justifyContent='space-between'
 			_hover={{
 				transform: 'scale(1.05)',
 			}}
@@ -29,10 +32,12 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 				/>
 			)}
 			{videoUrl && (
-				<video autoPlay loop muted playsInline>
-					<source src={videoUrl} type={'video/mp4'} />
-					Your browser does not support the video tag.
-				</video>
+				<Box position='relative' w='100%' h='100%'>
+					<video autoPlay loop muted playsInline style={{ objectFit: 'cover', height: '100%' }}>
+						<source src={videoUrl} type={'video/mp4'} />
+						Your browser does not support the video tag.
+					</video>
+				</Box>
 			)}
 			<Box p='6'>
 				<Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' isTruncated>
