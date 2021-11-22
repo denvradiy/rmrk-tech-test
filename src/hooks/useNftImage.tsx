@@ -4,7 +4,10 @@ import { useInViewEffect } from 'react-hook-inview'
 
 import { IImageProps, INft } from '../interfaces'
 
-export default function useNftImage(item: INft): (string | ((node: Element | null) => void))[] {
+export default function useNftImage(item: INft): {
+	data: string[]
+	itemRef: (node: Element | null) => void
+} {
 	const [imgUrl, setImgUrl] = useState('')
 	const [videoUrl, setVideoUrl] = useState('')
 
@@ -33,5 +36,8 @@ export default function useNftImage(item: INft): (string | ((node: Element | nul
 		{ threshold: 0.5 },
 	)
 
-	return [imgUrl, videoUrl, itemRef]
+	return {
+		data: [imgUrl, videoUrl],
+		itemRef,
+	}
 }

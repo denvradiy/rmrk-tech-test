@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo } from 'react'
 import { Box } from '@chakra-ui/react'
 
 import Image from 'components/Image'
@@ -7,7 +7,10 @@ import { INft } from 'interfaces'
 import useNftImage from 'hooks/useNftImage'
 
 function NftItem({ item }: { item: INft }): JSX.Element {
-	const [imgUrl, videoUrl, itemRef] = useNftImage(item)
+	const {
+		data: [imgUrl, videoUrl],
+		itemRef,
+	} = useNftImage(item)
 
 	return (
 		<Box
@@ -24,14 +27,17 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 			}}
 			transitionDuration={'0.25s'}
 		>
-			{imgUrl && (
+			{(!imgUrl || !videoUrl) && (
 				<Image
-					src={imgUrl || '/images/common/nft-placeholder.jpeg'}
+					src={'/images/common/nft-placeholder.jpeg'}
 					width={180}
 					height={180}
 					objectFit={'cover'}
 				/>
 			)}
+
+			{imgUrl && <Image src={imgUrl} width={180} height={180} objectFit={'cover'} />}
+
 			{videoUrl && (
 				<Box position='relative' w='100%' h='100%'>
 					<video autoPlay loop muted playsInline style={{ objectFit: 'cover', height: '100%' }}>
