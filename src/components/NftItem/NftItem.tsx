@@ -55,7 +55,7 @@ function NftItem({ item }: { item: INft }): JSX.Element {
 				)}
 
 				{videoUrl && !imgUrl && (
-					<Box position='relative' w='100%' h='100%'>
+					<Box position='relative' display='flex' w='100%' h='100%'>
 						<video autoPlay loop muted playsInline style={{ objectFit: 'cover', height: '100%' }}>
 							<source src={videoUrl} type={'video/mp4'} />
 							Your browser does not support the video tag.
