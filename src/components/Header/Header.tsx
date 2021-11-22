@@ -13,7 +13,7 @@ function Header({ ...rest }: HeaderProps): JSX.Element {
 	return (
 		<Box
 			as={'header'}
-			position={'absolute'}
+			position={'fixed'}
 			top={0}
 			left={0}
 			py={2}
